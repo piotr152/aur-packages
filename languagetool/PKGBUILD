@@ -26,15 +26,25 @@ md5sums=('0a94894383c5a2b535722f2a99dbc6ff'
          'e7ac275c107865883f0c6bbfdc77f14a')
 
 package() {
+	
+ if [ $CARCH == 'i686' ] 
+ then
+	rm "$srcdir/LanguageTool/libhunspell-linux-x86-64.so"
+ fi
+ 		
  install -d "$pkgdir/opt"
  install -d "$pkgdir/usr/bin"
  install -d "$pkgdir/usr/share/applications"
  install -d "$pkgdir/usr/share/pixmaps"
- cp -r "$srcdir/LanguageTool" "$pkgdir/opt"
- chmod +x "$srcdir/languagetool"
- chmod +x "$srcdir/languagetool-gui"
- install "$srcdir/languagetool" "$pkgdir/usr/bin"
- install "$srcdir/languagetool-gui" "$pkgdir/usr/bin"
- install "$srcdir/LanguageTool.png" "$pkgdir/usr/share/pixmaps"
+ 
+ cp -r 		"$srcdir/LanguageTool" "$pkgdir/opt"
+ chmod +x 	"$srcdir/languagetool"
+ chmod +x 	"$srcdir/languagetool-gui"
+ 
+
+ 
+ install "$srcdir/languagetool" 		"$pkgdir/usr/bin"
+ install "$srcdir/languagetool-gui" 	"$pkgdir/usr/bin"
+ install "$srcdir/LanguageTool.png" 	"$pkgdir/usr/share/pixmaps"
  install "$srcdir/languagetool.desktop" "$pkgdir/usr/share/applications"
 }
