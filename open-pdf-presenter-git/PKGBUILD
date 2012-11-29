@@ -1,7 +1,7 @@
 # Maintainer: strigyskow
 
 pkgname=open-pdf-presenter-git
-pkgver=20121107
+pkgver=20121129
 pkgrel=1
 pkgdesc="A program for presenting PDFs featuring a presenter console on an auxiliary monitor - Development branch"
 arch=('i686' 'x86_64')
