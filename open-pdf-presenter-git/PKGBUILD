@@ -1,0 +1,40 @@
+# Maintainer: strigyskow
+
+pkgname=open-pdf-presenter-git
+pkgver=20121107
+pkgrel=1
+pkgdesc="A program for presenting PDFs featuring a presenter console on an auxiliary monitor - Development branch"
+arch=('i686' 'x86_64')
+url="http://code.google.com/p/open-pdf-presenter/"
+license=('GPL')
+groups=()
+depends=('qt' 'poppler-qt')
+#source=("http://open-pdf-presenter.googlecode.com/files/open-pdf-presenter-$pkgver.tar.gz")
+provides=('open-pdf-presenter')
+conflicts=('open-pdf-presenter')
+_gitroot=("https://code.google.com/p/open-pdf-presenter")
+_gitname=("open-pdf-presenter")
+sha1sums=('56289d2e26bc955a967cf0f1305d10c2eb7ffbf9')
+
+
+build() {
+	
+	if [[ -d "${_gitname}" ]]; then
+		cd "${_gitname}" && git pull origin development
+		msg "The local files are updated."
+	else
+		git clone "${_gitroot}" "${_gitname}"
+	fi
+
+	cd "$srcdir/$_gitname"
+	git checkout origin/development
+	
+#	cd "$srcdir/$pkgname"
+	qmake PREFIX="/usr"
+	make
+}
+
+package() {
+	cd "$srcdir/$_gitname"
+	make INSTALL_ROOT="$pkgdir" install
+}

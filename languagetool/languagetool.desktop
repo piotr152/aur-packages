@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Language Tool
+GenericName=Grammar Checker
+Categories=Office
+Exec=languagetool-gui
+Icon=LanguageTool.png

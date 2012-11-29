@@ -1,0 +1,10 @@
+post_remove() {
+
+	if [ -d /opt/pvb ]; then
+		echo "Removing leftover files..."
+		rm -r /opt/pvb
+		echo "Done"
+	fi
+
+
+}

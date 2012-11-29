@@ -1,0 +1,40 @@
+# Maintainer: Your Name <youremail@domain.com>
+pkgname=languagetool
+pkgver=1.9
+pkgrel=1
+pkgdesc="Open Source proofreading software for English, French, German, Polish, Romanian, and more than 20 other languages."
+arch=("any")
+url="http://www.languagetool.org/"
+license=('GPL')
+groups=()
+depends=(java-runtime)
+makedepends=()
+optdepends=()
+provides=()
+conflicts=()
+replaces=()
+backup=()
+options=()
+install=
+changelog=
+source=(http://www.languagetool.org/download/LanguageTool-"$pkgver".zip languagetool languagetool-gui languagetool.desktop LanguageTool.png)
+noextract=()
+md5sums=('0a94894383c5a2b535722f2a99dbc6ff'
+         '698c27b3f7b49f1abc47e816ce90121e'
+         'c2da3680e4a863135e7b0119648ad7be'
+         'd78644bfc4765bf90676a1bc28e7ae2e'
+         'e7ac275c107865883f0c6bbfdc77f14a')
+
+package() {
+ install -d "$pkgdir/opt"
+ install -d "$pkgdir/usr/bin"
+ install -d "$pkgdir/usr/share/applications"
+ install -d "$pkgdir/usr/share/pixmaps"
+ cp -r "$srcdir/LanguageTool" "$pkgdir/opt"
+ chmod +x "$srcdir/languagetool"
+ chmod +x "$srcdir/languagetool-gui"
+ install "$srcdir/languagetool" "$pkgdir/usr/bin"
+ install "$srcdir/languagetool-gui" "$pkgdir/usr/bin"
+ install "$srcdir/LanguageTool.png" "$pkgdir/usr/share/pixmaps"
+ install "$srcdir/languagetool.desktop" "$pkgdir/usr/share/applications"
+}
