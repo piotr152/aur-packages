@@ -1,0 +1,9 @@
+diff -aur pvb.orig/qmake.sh pvb.new/qmake.sh
+--- pvb.orig/qmake.sh	2013-01-01 07:38:15.000000000 +0100
++++ pvb.new/qmake.sh	2013-03-03 00:16:15.863261773 +0100
+@@ -25,5 +25,5 @@
+   /usr/lib64/qt4/bin/qmake $1 $2 $3 $4 $5 $6 $7 $8
+   exit
+ fi
+-qmake $1 $2 $3 $4 $5 $6 $7 $8
++qmake-qt4 $1 $2 $3 $4 $5 $6 $7 $8

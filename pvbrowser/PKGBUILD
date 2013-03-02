@@ -2,17 +2,20 @@
 
 pkgname=pvbrowser
 pkgver=4.7.2
-pkgrel=2
+pkgrel=3
 pkgdesc="Process visualization, HMI and SCADA"
 arch=('i686' 'x86_64')
 url="www.pvbrowser.org"
 license=('GPL')
 groups=()
 depends=('qt4' 'qtwebkit' 'qwt' 'python2' 'lua')
-source=(pvb.tar.gz::http://pvbrowser.org/pvbrowser/download.php?file=pvb.tar.gz)
+source=(pvb.tar.gz::http://pvbrowser.org/pvbrowser/download.php?file=pvb.tar.gz qmake-qt4.patch)
 #_gitrepo=(https://github.com/pvbrowser/pvb.git)
 install='pvbrowser.install'
-md5sums=('da1004017c5e1bf4fe3625328bcd9617')
+md5sums=('da1004017c5e1bf4fe3625328bcd9617'
+         'd40339297ae08e93e931a64ddf5dd765')
+
+
 
 
 build() {
@@ -21,6 +24,7 @@ build() {
 #  	git clone $_gitrepo
 #  fi
   cd $srcdir/pvb
+  patch -p1 < $srcdir/qmake-qt4.patch
   ./build.sh
 }
 
