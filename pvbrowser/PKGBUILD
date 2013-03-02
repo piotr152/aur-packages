@@ -2,13 +2,13 @@
 
 pkgname=pvbrowser
 pkgver=4.7.2
-pkgrel=1
+pkgrel=2
 pkgdesc="Process visualization, HMI and SCADA"
 arch=('i686' 'x86_64')
 url="www.pvbrowser.org"
 license=('GPL')
 groups=()
-depends=('qt' 'qtwebkit' 'qwt' 'python2' 'lua')
+depends=('qt4' 'qtwebkit' 'qwt' 'python2' 'lua')
 source=(pvb.tar.gz::http://pvbrowser.org/pvbrowser/download.php?file=pvb.tar.gz)
 #_gitrepo=(https://github.com/pvbrowser/pvb.git)
 install='pvbrowser.install'

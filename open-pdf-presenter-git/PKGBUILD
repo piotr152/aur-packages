@@ -1,14 +1,14 @@
 # Maintainer: strigyskow
 
 pkgname=open-pdf-presenter-git
-pkgver=20121129
+pkgver=20130302
 pkgrel=1
 pkgdesc="A program for presenting PDFs featuring a presenter console on an auxiliary monitor - Development branch"
 arch=('i686' 'x86_64')
 url="http://code.google.com/p/open-pdf-presenter/"
 license=('GPL')
 groups=()
-depends=('qt' 'poppler-qt')
+depends=('qt4' 'poppler-qt')
 #source=("http://open-pdf-presenter.googlecode.com/files/open-pdf-presenter-$pkgver.tar.gz")
 provides=('open-pdf-presenter')
 conflicts=('open-pdf-presenter')
@@ -30,7 +30,7 @@ build() {
 	git checkout origin/development
 	
 #	cd "$srcdir/$pkgname"
-	qmake PREFIX="/usr"
+	qmake-qt4 PREFIX="/usr"
 	make
 }
 

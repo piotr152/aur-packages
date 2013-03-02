@@ -20,7 +20,7 @@ md5sums=('8d0e3502168f9a1a597d788b6dbfd4ef')
 
 build() {
   cd "${srcdir}/${_pkgname}-${_pkgver}"
-  ./configure --prefix="/usr"
+  ./configure --prefix="/usr" --with-geosconfig=$(which geos-config)
   make
   make check
 }
