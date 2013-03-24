@@ -2,18 +2,19 @@
 
 pkgname=pvbrowser
 pkgver=4.7.2
-pkgrel=3
+pkgrel=4
 pkgdesc="Process visualization, HMI and SCADA"
 arch=('i686' 'x86_64')
 url="www.pvbrowser.org"
 license=('GPL')
 groups=()
-depends=('qt4' 'qtwebkit' 'qwt' 'python2' 'lua')
-source=(pvb.tar.gz::http://pvbrowser.org/pvbrowser/download.php?file=pvb.tar.gz qmake-qt4.patch)
+depends=('qt' 'qtwebkit' 'qwt' 'python2' 'lua')
+source=(pvb.tar.gz::http://pvbrowser.org/pvbrowser/download.php?file=pvb.tar.gz) # qmake-qt4.patch)
 #_gitrepo=(https://github.com/pvbrowser/pvb.git)
 install='pvbrowser.install'
-md5sums=('da1004017c5e1bf4fe3625328bcd9617'
-         'd40339297ae08e93e931a64ddf5dd765')
+md5sums=('c299a271fe4ecb6e8992050e420de068')
+
+
 
 
 
@@ -24,7 +25,7 @@ build() {
 #  	git clone $_gitrepo
 #  fi
   cd $srcdir/pvb
-  patch -p1 < $srcdir/qmake-qt4.patch
+#  patch -p1 < $srcdir/qmake-qt4.patch
   ./build.sh
 }
 
@@ -48,6 +49,7 @@ package() {
   install -d  $pkgdir/opt/pvb/rllib/lib
   install -d  $pkgdir/opt/pvb/rllib/rlsvg
   install -d  $pkgdir/opt/pvb/rllib/rlhistory
+  install -d  $pkgdir/opt/pvb/fake_qmake
   install -d  $pkgdir/opt/pvb/language_bindings/lua/pvslua
   install -d  $pkgdir/opt/pvb/language_bindings/lua/pvapplua
   install -d  $pkgdir/opt/pvb/language_bindings/python/id
@@ -85,6 +87,7 @@ package() {
   cp    $srcdir/pvb/start_pvbapp/start_if_not_already_running.sh        $pkgdir/opt/pvb/start_pvbapp/
   cp    $srcdir/pvb/rllib/rlsvg/rlsvgcat                                $pkgdir/opt/pvb/rllib/rlsvg/
   cp    $srcdir/pvb/rllib/rlhistory/rlhistory                           $pkgdir/opt/pvb/rllib/rlhistory/
+  cp    $srcdir/pvb/fake_qmake/fake_qmake                               $pkgdir/opt/pvb/fake_qmake
   cp    $srcdir/pvb/rllib/lib/*.h                                       $pkgdir/opt/pvb/rllib/lib/
   cp    $srcdir/pvb/rllib/lib/nodave.o                                  $pkgdir/opt/pvb/rllib/lib/
   cp    $srcdir/pvb/rllib/lib/setport.o                                 $pkgdir/opt/pvb/rllib/lib/
@@ -116,6 +119,8 @@ package() {
   cp    $srcdir/pvb/designer/plugins/libqwt_designer_plugin.so          $pkgdir/opt/pvb/designer/plugins/
   cp    $srcdir/pvb/pvserver/libpvsid.so                                $pkgdir/opt/pvb/pvserver/
   cp    $srcdir/pvb/pvserver/libpvsmt.so                                $pkgdir/opt/pvb/pvserver/
+  cp    $srcdir/pvb/pvserver/libpvsid.a                                 $pkgdir/opt/pvb/pvserver/
+  cp    $srcdir/pvb/pvserver/libpvsmt.a                                 $pkgdir/opt/pvb/pvserver/
   cp    $srcdir/pvb/rllib/lib/librllib.so                               $pkgdir/opt/pvb/rllib/lib/
 
   ln -sf $pkgdir/opt/pvb/pvbrowser/pvbrowser                     	$pkgdir/usr/bin/pvbrowser
@@ -124,6 +129,7 @@ package() {
   ln -sf $pkgdir/opt/pvb/rllib/rlsvg/rlsvgcat                    	$pkgdir/usr/bin/rlsvgcat
   ln -sf $pkgdir/opt/pvb/start_pvbapp/start_pvbapp               	$pkgdir/usr/bin/start_pvbapp
   ln -sf $pkgdir/opt/pvb/rllib/rlhistory/rlhistory               	$pkgdir/usr/bin/rlhistory
+  ln -sf $pkgdir/opt/pvb/fake_qmake/fake_qmake                   	$pkgdir/usr/bin/fake_qmake
   ln -sf $pkgdir/opt/pvb/update_pvbrowser.sh                     	$pkgdir/usr/bin/update_pvbrowser
   ln -sf $pkgdir/opt/pvb/language_bindings/lua/pvslua/pvslua     	$pkgdir/usr/bin/pvslua
   ln -sf $pkgdir/opt/pvb/language_bindings/lua/pvapplua/pvapplua 	$pkgdir/usr/bin/pvapplua
