@@ -1,7 +1,7 @@
 # Maintainer: strigyskow
 pkgname=spatialite-gui
-pkgver=1.6.0
-_pkgver=1.6.0
+pkgver=1.7.0
+_pkgver=1.7.0
 pkgrel=1
 pkgdesc="spatialite-gui is an open source Graphical User Interface (GUI) tool supporting SpatiaLite."
 url="https://www.gaia-gis.it/fossil/spatialite_gui/index"
@@ -16,7 +16,7 @@ backup=()
 #install='foo.install'
 _pkgname=spatialite_gui
 source=("http://www.gaia-gis.it/gaia-sins/spatialite-gui-sources/spatialite_gui-${_pkgver}.tar.gz")
-md5sums=('8d0e3502168f9a1a597d788b6dbfd4ef')
+md5sums=('34fd2c3fb60c7460de979f8d34d853a4')
 
 build() {
   cd "${srcdir}/${_pkgname}-${_pkgver}"
